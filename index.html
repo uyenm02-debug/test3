@@ -31,9 +31,10 @@
             z-index: 10;
         }
 
+        /* Lớp active kích hoạt hiển thị */
         .window.active {
             display: block;
-            animation: popUp 0.3s ease-out;
+            animation: popUp 0.3s ease-out forwards;
         }
 
         @keyframes popUp {
@@ -98,14 +99,12 @@
             border-color: #000000 #ffffff #ffffff #000000;
             transform: scale(0.98);
         }
-        
         .btn-cute { background: #ffb6c1; } 
 
         #btn-no {
             position: relative;
-            /* Thêm transition mượt mà khi nút di chuyển */
-            transition: all 0.2s ease-out;
-            z-index: 999;
+            transition: all 0.15s ease-out;
+            z-index: 999; /* Đảm bảo nút từ chối không bị đè */
         }
 
         .sticker {
@@ -127,7 +126,6 @@
             max-width: 90px;
             animation: pulse 1.5s infinite alternate;
         }
-        
         @keyframes pulse {
             0% { transform: scale(0.9); }
             100% { transform: scale(1.1); }
@@ -137,7 +135,6 @@
             max-width: 250px;
             animation: drive 2.5s linear infinite;
         }
-        
         @keyframes drive {
             0% { transform: translateX(-30px) translateY(0); }
             50% { transform: translateX(0px) translateY(-5px); }
@@ -161,89 +158,6 @@
             line-height: 1.8;
             margin-bottom: 15px;
         }
-        
         .invitation-card strong { color: #d81b60; }
     </style>
-</head>
-<body>
-
-    <!-- BƯỚC 1: Bảng Error -->
-    <div class="window active" id="win-1">
-        <div class="title-bar">
-            <span>⚠️ ERROR_FATAL.exe</span>
-            <span>X</span>
-        </div>
-        <div class="content">
-            <p><strong>CẢNH BÁO BẢO MẬT!</strong></p>
-            <p>Hệ thống phát hiện một gói dữ liệu tối mật. Yêu cầu xác nhận bạn đã sẵn sàng nhận thông tin này!</p>
-            <!-- Sửa lỗi click và thêm cảm ứng cho mobile -->
-            <div style="margin-top: 20px; position: relative; height: 50px;">
-                <button id="btn-yes" onclick="playLoading('win-loading-1', 'win-note', 3500)">[ Đồng ý ]</button>
-                <button id="btn-no" onmouseover="dodgeCursor()" onclick="dodgeCursor()" ontouchstart="dodgeCursor()">[ Từ chối ]</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- BƯỚC 2: Màn hình Loading 1 -->
-    <div class="window" id="win-loading-1">
-        <div class="title-bar">
-            <span>⏳ System_Loading.exe</span>
-        </div>
-        <div class="content">
-            <div class="loading-container">
-                <img class="logo-pulse" src="image_1f53fc.png" alt="Logo Anh Tài">
-                <p class="loading-text">Đang khởi động hệ thống trái tim... █▒▒▒▒▒▒▒</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- BƯỚC 3: Trạm 1 - Tờ Note Vàng -->
-    <div class="window" id="win-note">
-        <div class="title-bar">
-            <span>📝 Loi_Nhan_Tu_Trai_Tim.txt</span>
-            <span>X</span>
-        </div>
-        <div class="content">
-            <div class="sticky-note">
-                "Hi em, kkk thấy tui hay hông, đây là 1 trong những bất ngờ tui nói zới bé nè. Happy ours day coming nha. Lời nói đầu tiên là cảm ơn em, cảm em vì đã ở cạnh tui, và yêu tui như tui yêu em. và 1 năm qua tụi mình cũng trải qua cũng hông nhiều cũng hông ít, nói chung là vừa đủ trọn vị 1 năm đối với tụi mình (cay,đắng,ngọt,bùi) có đủ luôn. 1 món ăn đủ gia vị, chị chỉ mong là tụi mình dù có chuyện gì xảy ra tụi mình vẫn còn có thể ngồi xuống cùng nhau trò chuyện. 1 lần nữa ăn mừng 1 năm của tụi mình nhé, và chúng ta sẽ có những năm tiếp theo nữa, cùng nhau ăn mừng kkk. chị yêu em ❤️"
-                
-                <img class="pinned-img" src="Screenshot 2026-10-07 194611.png" alt="Ảnh kỷ niệm">
-            </div>
-            <button onclick="playLoading('win-loading-2', 'win-message', 3500)">[ Đọc tiếp nè ]</button>
-        </div>
-    </div>
-
-    <!-- BƯỚC 4: Màn hình Loading 2 -->
-    <div class="window" id="win-loading-2">
-        <div class="title-bar pink">
-            <span>⏳ Chuẩn_Bị_Bất_Ngờ.exe</span>
-        </div>
-        <div class="content">
-            <div class="loading-container">
-                <img class="shin-drive" src="shin-tach-nen.png" alt="Cu Shin Lái Xe">
-                <p class="loading-text" style="color: #d81b60;">Đang chở thiệp mời tới... █▒▒▒▒▒▒▒</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- BƯỚC 5: Trạm 2 - Message Received -->
-    <div class="window" id="win-message">
-        <div class="title-bar pink">
-            <span>💌 Message_Received.txt</span>
-        </div>
-        <div class="content">
-            <p style="font-family: 'Mali', cursive; font-size: 19px; font-weight: 600; margin-bottom: 25px;">
-                Chị gửi em tấm thiệp mời nhé !
-            </p>
-            <button class="btn-cute" onclick="nextWin('win-invite')">[ Mở thư ra xem nè ]</button>
-        </div>
-    </div>
-
-    <!-- BƯỚC 6: Trạm 3 - Thiệp mời -->
-    <div class="window" id="win-invite">
-        <div class="title-bar pink">
-            <span>✨ Dinner_Invitation.doc</span>
-        </div>
-        <div class="content">
-            <div class="invitation-card">
-                <strong>⏰ Thời gian:</strong>
+</head
