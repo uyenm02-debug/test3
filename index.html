@@ -9,11 +9,12 @@
     
     <style>
         body {
-            /* THAY ĐỔI BACKGROUND Ở ĐÂY: Sửa 'ten-hinh-nen.jpg' thành tên file ảnh nền của bạn */
-            background-image: url('ten-hinh-nen.jpg'); 
+            /* Đã thay đổi background thành hình ảnh Cu Shin */
+            background-image: url('image_1f53c0.jpg'); 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed; /* Giữ nền cố định không bị vỡ khi cuộn */
             
             font-family: 'Space Mono', monospace;
             margin: 0;
@@ -162,15 +163,15 @@
             <!-- Phân cảnh 1: Màn hình Loading -->
             <div id="loading-screen">
                 <div class="loading-container">
-                    <!-- Sửa tên file logo Anh Tài của bạn vào src -->
-                    <img class="logo-spin" src="logo-anh-tai.png" alt="Logo Anh Tài">
-                    <!-- Sửa tên file Cu Shin lái xe của bạn vào src -->
-                    <img class="shin-bounce" src="shin-lai-xe.jpg" alt="Cu Shin">
+                    <!-- Logo Anh Tài đã được gắn đúng tên file đính kèm -->
+                    <img class="logo-spin" src="image_1f53fc.png" alt="Logo Anh Tài">
+                    <!-- Cu Shin loading -->
+                    <img class="shin-bounce" src="https://media.tenor.com/K_l07m2x1XwAAAAj/shin-chan-run.gif" alt="Cu Shin Run">
                 </div>
                 <p class="loading-text">Đang giải mã tình cảm... █▒▒▒▒▒▒▒</p>
             </div>
 
-            <!-- Phân cảnh 2: Nội dung thực tế (Sẽ hiện ra sau 3.5 giây) -->
+            <!-- Phân cảnh 2: Nội dung thực tế -->
             <div id="real-content" style="display: none;">
                 <p style="font-family: 'Mali', cursive; font-size: 18px; font-weight: 600;">
                     "Cảm ơn em đã ở cạnh chị trong 1 năm qua. <br>Đây là thư thông báo cho bữa tối của tụi mình!"
@@ -215,12 +216,11 @@
             document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
             document.getElementById('win-' + step).classList.add('active');
 
-            // Logic giả lập Loading ở Trạm 2
             if (step === 2) {
                 setTimeout(() => {
                     document.getElementById('loading-screen').style.display = 'none';
                     document.getElementById('real-content').style.display = 'block';
-                }, 3500); // Đổi 3500 thành số mili-giây bạn muốn (3500 = 3.5 giây)
+                }, 3500); 
             }
         }
 
