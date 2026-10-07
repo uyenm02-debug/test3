@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thư thông báo mật!</title>
+    <!-- Nhúng Font chữ hệ thống và Font viết tay -->
     <link href="https://fonts.googleapis.com/css2?family=Mali:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <style>
         body {
+            /* Nền màu Xanh da trời */
             background-color: #87CEEB; 
+            
             font-family: 'Space Mono', monospace;
             margin: 0;
             overflow: hidden;
@@ -19,6 +22,7 @@
             color: #000;
         }
 
+        /* Khung cửa sổ Y2K chung */
         .window {
             background: #c0c0c0;
             border: 2px solid;
@@ -31,10 +35,9 @@
             z-index: 10;
         }
 
-        /* Lớp active kích hoạt hiển thị */
         .window.active {
             display: block;
-            animation: popUp 0.3s ease-out forwards;
+            animation: popUp 0.3s ease-out;
         }
 
         @keyframes popUp {
@@ -60,8 +63,9 @@
             text-align: center;
         }
 
+        /* Thiết kế tờ Note ghi chú */
         .sticky-note {
-            background-color: #fff9c4; 
+            background-color: #fff9c4; /* Màu giấy vàng nhạt */
             border: 1px solid #e0e0e0;
             padding: 20px;
             box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
@@ -70,6 +74,7 @@
             text-align: left;
             line-height: 1.6;
             margin-bottom: 15px;
+            position: relative;
         }
 
         .pinned-img {
@@ -79,7 +84,7 @@
             box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
             margin: 15px auto 0;
             display: block;
-            transform: rotate(-2deg);
+            transform: rotate(-2deg); /* Nghiêng ảnh nhẹ cho tự nhiên */
         }
 
         button {
@@ -101,53 +106,51 @@
         }
         .btn-cute { background: #ffb6c1; } 
 
-        #btn-no {
-            position: relative;
-            transition: all 0.15s ease-out;
-            z-index: 999; /* Đảm bảo nút từ chối không bị đè */
-        }
-
         .sticker {
             max-width: 120px;
             margin: 10px auto;
             display: block;
         }
 
+        /* Màn hình Loading */
         .loading-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             gap: 15px;
             margin-bottom: 15px;
-        }
-
-        .logo-pulse {
-            max-width: 90px;
-            animation: pulse 1.5s infinite alternate;
-        }
-        @keyframes pulse {
-            0% { transform: scale(0.9); }
-            100% { transform: scale(1.1); }
+            flex-direction: column;
         }
         
-        .shin-drive {
-            max-width: 250px;
-            animation: drive 2.5s linear infinite;
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
         }
-        @keyframes drive {
-            0% { transform: translateX(-30px) translateY(0); }
-            50% { transform: translateX(0px) translateY(-5px); }
-            100% { transform: translateX(30px) translateY(0); }
+
+        .logo-spin {
+            max-width: 70px;
+            animation: spin 3s linear infinite;
         }
+        
+        .shin-bounce {
+            max-width: 160px;
+            border-radius: 10px;
+            animation: bounce 0.5s alternate infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes bounce { 100% { transform: translateY(-10px); } }
 
         .loading-text {
             font-family: 'Courier Prime', monospace;
             font-weight: bold;
             color: #000080;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
+        /* Thiệp mời */
         .invitation-card {
             background: #fffdf0; 
             border: 2px dashed #d81b60;
@@ -160,4 +163,134 @@
         }
         .invitation-card strong { color: #d81b60; }
     </style>
-</head
+</head>
+<body>
+
+    <!-- MÀN HÌNH LOADING 1 (Tự động chạy khi mở web) -->
+    <div class="window active" id="win-loading-1">
+        <div class="title-bar">
+            <span>⏳ System_Loading.exe</span>
+        </div>
+        <div class="content">
+            <div class="loading-container">
+                <div class="logo-row">
+                    <img class="logo-spin" src="image_1f53fc.png" alt="Logo Anh Tài">
+                    <img class="shin-bounce" src="image_1f53c0.jpg" alt="Cu Shin Lái Xe">
+                </div>
+                <p class="loading-text">Đang tải dữ liệu bí mật... █▒▒▒▒▒▒▒</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANG 1: Tờ Note Lời Nhắn -->
+    <div class="window" id="win-note">
+        <div class="title-bar">
+            <span>📝 Loi_Nhan_Tu_Trai_Tim.txt</span>
+            <span>X</span>
+        </div>
+        <div class="content">
+            <div class="sticky-note">
+                "Hi em, kkk thấy tui hay hông, đây là 1 trong những bất ngờ tui nói zới bé nè. Happy ours day coming nha. Lời nói đầu tiên là cảm ơn em, cảm em vì đã ở cạnh tui, và yêu tui như tui yêu em. và 1 năm qua tụi mình cũng trải qua cũng hông nhiều cũng hông ít, nói chung là vừa đủ trọn vị 1 năm đối với tụi mình (cay,đắng,ngọt,bùi) có đủ luôn. 1 món ăn đủ gia vị, chị chỉ mong là tụi mình dù có chuyện gì xảy ra tụi mình vẫn còn có thể ngồi xuống cùng nhau trò chuyện. 1 lần nữa ăn mừng 1 năm của tụi mình nhé, và chúng ta sẽ có những năm tiếp theo nữa, cùng nhau ăn mừng kkk. chị yêu em ❤️"
+                
+                <!-- Thay link ảnh đính kèm của bạn vào src dưới đây -->
+                <img class="pinned-img" src="Screenshot 2026-10-07 194611.png" alt="Ảnh kỷ niệm">
+            </div>
+            <button onclick="startLoading2()">[ Đọc tiếp nè ]</button>
+        </div>
+    </div>
+
+    <!-- MÀN HÌNH LOADING 2 (Chuyển tiếp sang thiệp mời) -->
+    <div class="window" id="win-loading-2">
+        <div class="title-bar pink">
+            <span>⏳ Chuẩn_Bị_Bất_Ngờ.exe</span>
+        </div>
+        <div class="content">
+            <div class="loading-container">
+                <div class="logo-row">
+                    <img class="logo-spin" src="image_1f53fc.png" alt="Logo Anh Tài">
+                </div>
+                <p class="loading-text" style="color: #d81b60;">Đang tạo thiệp mời... █▒▒▒▒▒▒▒</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANG 2: Message Received -->
+    <div class="window" id="win-message">
+        <div class="title-bar pink">
+            <span>💌 Message_Received.txt</span>
+        </div>
+        <div class="content">
+            <p style="font-family: 'Mali', cursive; font-size: 19px; font-weight: 600; margin-bottom: 25px;">
+                Chị gửi em tấm thiệp mời nhé !<br><br>
+                "Cảm ơn em đã ở cạnh chị trong 1 năm qua.<br>Đây là thư thông báo cho bữa tối của tụi mình!"
+            </p>
+            <button class="btn-cute" onclick="nextWin('win-invite')">[ Mở thư ra xem nè ]</button>
+        </div>
+    </div>
+
+    <!-- TRANG 3: Thiệp mời (Với 2 nút đồng ý) -->
+    <div class="window" id="win-invite">
+        <div class="title-bar pink">
+            <span>✨ Dinner_Invitation.doc</span>
+        </div>
+        <div class="content">
+            <div class="invitation-card">
+                <strong>⏰ Thời gian:</strong> 18g00 ngày 19.10.2026<br>
+                <strong>📍 Địa điểm:</strong> Mì Á Pasta (294 Pasteur, Xuân Hòa, Hồ Chí Minh)<br>
+                <strong>🛵 Phương tiện:</strong> Tui sẽ đón em tại Hùng Vương Plaza lúc 17g00<br>
+                <strong>👗 Dresscode:</strong> Trang phục em yêu thích là được nha!
+            </div>
+            
+            <!-- Hai nút ép buộc đồng ý -->
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <button class="btn-cute" onclick="nextWin('win-goodbye')">[ Em đồng ý ]</button>
+                <button class="btn-cute" onclick="nextWin('win-goodbye')">[ Giống ý trên ]</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRANG 4: Tạm biệt -->
+    <div class="window" id="win-goodbye">
+        <div class="title-bar">
+            <span>💖 See_You_Soon.exe</span>
+        </div>
+        <div class="content">
+            <p style="font-family: 'Mali', cursive; font-size: 22px; font-weight: bold; color: #d81b60;">
+                Bái bai, love youuuu! 💕
+            </p>
+            <img class="sticker" src="https://media.tenor.com/5V1pZf9n-78AAAAj/shin-chan-love.gif" alt="Cu Shin Heart">
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT XỬ LÝ LOGIC CHUYỂN TRANG VÀ LOADING -->
+    <script>
+        // Hàm ẩn tất cả cửa sổ
+        function hideAllWindows() {
+            document.querySelectorAll('.window').forEach(w => w.classList.remove('active'));
+        }
+
+        // Hàm hiện 1 cửa sổ cụ thể
+        function nextWin(windowId) {
+            hideAllWindows();
+            document.getElementById(windowId).classList.add('active');
+        }
+
+        // Tự động chạy Loading 1 khi vừa mở web, sau 3.5s chuyển sang Tờ Note
+        window.onload = function() {
+            setTimeout(() => {
+                nextWin('win-note');
+            }, 3500);
+        };
+
+        // Hàm xử lý khi bấm nút "Đọc tiếp nè" ở Tờ Note
+        function startLoading2() {
+            nextWin('win-loading-2');
+            
+            // Giữ màn hình loading 2 trong 2.5s rồi hiện Thiệp Message
+            setTimeout(() => {
+                nextWin('win-message');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
