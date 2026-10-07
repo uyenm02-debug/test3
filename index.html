@@ -9,8 +9,13 @@
     
     <style>
         body {
-            /* Đổi nền thành màu Xanh Sky Blue */
-            background-color: #87CEEB; 
+            /* Đã thay đổi background thành hình ảnh Cu Shin */
+            background-image: url('image_1f53c0.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Giữ nền cố định không bị vỡ khi cuộn */
+            
             font-family: 'Space Mono', monospace;
             margin: 0;
             overflow: hidden;
@@ -82,13 +87,38 @@
             transition: top 0.1s, left 0.1s;
         }
 
-        /* Style cho màn hình loading chữ */
+        .sticker {
+            max-width: 120px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        /* Style cho màn hình loading kết hợp Cu Shin & Anh Tài */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-spin {
+            max-width: 80px;
+            animation: spin 3s linear infinite;
+        }
+        
+        .shin-bounce {
+            max-width: 150px;
+            animation: bounce 0.5s alternate infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes bounce { 100% { transform: translateY(-10px); } }
+
         .loading-text {
             font-family: 'Courier Prime', monospace;
             font-weight: bold;
             color: #d81b60;
-            margin: 40px 0;
-            font-size: 16px;
         }
 
         .invitation-card {
@@ -101,7 +131,6 @@
             line-height: 1.8;
             margin-bottom: 15px;
         }
-        
         .invitation-card strong { color: #d81b60; }
     </style>
 </head>
@@ -114,6 +143,7 @@
             <span>X</span>
         </div>
         <div class="content">
+            <img class="sticker" src="https://media.tenor.com/tBw_2_O6E0kAAAAj/shin-chan-shin.gif" alt="Cu Shin">
             <p><strong>CẢNH BÁO BẢO MẬT!</strong></p>
             <p>Hệ thống phát hiện một gói dữ liệu tối mật. Yêu cầu xác nhận bạn đã sẵn sàng nhận thông tin này!</p>
             <div>
@@ -130,14 +160,20 @@
         </div>
         <div class="content">
             
-            <!-- Phân cảnh 1: Màn hình Loading chữ -->
+            <!-- Phân cảnh 1: Màn hình Loading -->
             <div id="loading-screen">
-                <p class="loading-text">Đang giải mã tình cảm... <br><br>█▒▒▒▒▒▒▒</p>
+                <div class="loading-container">
+                    <!-- Logo Anh Tài đã được gắn đúng tên file đính kèm -->
+                    <img class="logo-spin" src="image_1f53fc.png" alt="Logo Anh Tài">
+                    <!-- Cu Shin loading -->
+                    <img class="shin-bounce" src="https://media.tenor.com/K_l07m2x1XwAAAAj/shin-chan-run.gif" alt="Cu Shin Run">
+                </div>
+                <p class="loading-text">Đang giải mã tình cảm... █▒▒▒▒▒▒▒</p>
             </div>
 
             <!-- Phân cảnh 2: Nội dung thực tế -->
             <div id="real-content" style="display: none;">
-                <p style="font-family: 'Mali', cursive; font-size: 18px; font-weight: 600; margin: 20px 0;">
+                <p style="font-family: 'Mali', cursive; font-size: 18px; font-weight: 600;">
                     "Cảm ơn em đã ở cạnh chị trong 1 năm qua. <br>Đây là thư thông báo cho bữa tối của tụi mình!"
                 </p>
                 <button class="btn-cute" onclick="nextWin(3)">[ Mở thư ra xem nè ]</button>
@@ -168,9 +204,10 @@
             <span>💖 See_You_Soon.exe</span>
         </div>
         <div class="content">
-            <p style="font-family: 'Mali', cursive; font-size: 22px; font-weight: bold; color: #d81b60; margin: 40px 0;">
+            <p style="font-family: 'Mali', cursive; font-size: 22px; font-weight: bold; color: #d81b60;">
                 Bái bai, love youuuu! 💕
             </p>
+            <img class="sticker" src="https://media.tenor.com/5V1pZf9n-78AAAAj/shin-chan-love.gif" alt="Cu Shin Heart">
         </div>
     </div>
 
@@ -180,11 +217,10 @@
             document.getElementById('win-' + step).classList.add('active');
 
             if (step === 2) {
-                // Rút ngắn thời gian loading còn 2.5 giây do đã bỏ hình ảnh động
                 setTimeout(() => {
                     document.getElementById('loading-screen').style.display = 'none';
                     document.getElementById('real-content').style.display = 'block';
-                }, 2500); 
+                }, 3500); 
             }
         }
 
